@@ -6,13 +6,16 @@ var disneyMovies = ['Cinderella','The Little Mermaid','The Lion King', 'Mulan','
 function renderButton (){
     $("#buttons-view").empty();
     for (var i = 0; i < disneyMovies.length; i++) {
-        var  addButton = $("<button>");
-        addButton.addClass.("disney-movie");
+        var addButton = $("<button>");
+        addButton.addClass("disney-movie");
         addButton.attr("data-title", disneyMovies[i]);
-        addButton.text(topics[i]);
+        addButton.text(disneyMovies[i]);
         $("#buttons-view").append(addButton);
     }
-};
+   
+}
+    
+
 
 $("add-movie").on("click", function (event) {
 
@@ -26,7 +29,7 @@ $("add-movie").on("click", function (event) {
         method: "GET"
     }).done(function (response) {
         disneyMovies.push(disneyMovie);
-        renderButtons();
+        renderButton();
     });
 });
 
@@ -43,10 +46,11 @@ function displayGifs () {
         for (var i = 0; i < response.data.length; i++) {
             var gifDiv = $("<div>");
             gifDiv.addClass("gifDiv");
-            gifDiv.html("<p> Rating: " + response.data[i].rating);
+            gifDiv.html("<p>").attr("#rated");
+            $("#rated").text("Rating: " + response.data[i].rating);
 
             var gifGif = $("<img>").attr("src", response.data[i].images.fixed_height_still.url);
-            gifGif.addClass("gif");
+            gifGif.addClass(".gif");
 
             var image = $("<div>"); 
             image.addClass("action");
@@ -67,16 +71,20 @@ function displayGifs () {
 
 function gifAction(){
 
-    if ($(this).attr("data-state") == "still") {
-        $(this).html("<img src='" + $(this).attr("data-animate") + "'>");
-        $(this).attr("data-state", "animate");
-    }
-    else {
-        $(this).html("<img src='" + $(this).attr("data-still") + "'>");
-        $(this).attr("data-state", "still");
-    }
+var state = $(this).attr("data-state");
+if (state === "still") {
+    var animate = $(this).attr("data-animate");
+    $(this).attr("src", animate);
+    $(this).attr("data-state", "animate");
+} else {
+    var still =  $(this).attr("data-still");
+    $(this).attr("src", still);
+    $(this).attr("data-state", "still");
+}
 };
-//  renderButtons(); 
 
-document.on("click") button
-document.on("click") gif
+$(".disney-movie").on("click", displayGifs)
+$(".action").on("click",gifAction);
+
+renderButton(); 
+
