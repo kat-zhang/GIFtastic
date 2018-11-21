@@ -1,55 +1,98 @@
-// Default button choices //
-var disneyMovies = ['Cinderella','The Little Mermaid','The Lion King', 'Mulan','Peter Pan', 'Monsters, Inc', 'Lilo and Stitch', 'Toy Story', 'Finding Nemo','The Incredibles', 'Wall-e', 'Ratatouille', 'Up', "Winnie the Pooh", "The Emperor's New Groove"];
+ // Initial array of movies
+ var movies = ["Cinderella", "The Little Mermaid", "The Lion King", "Mulan", "Peter Pan"];
 
-// create button on click new search by user
+ // displayMovieInfo function re-renders the HTML to display the appropriate content
+ function displayMovieGif() {
 
-function renderButton (){
-    $("#buttons-view").empty();
-    for (var i = 0; i < disneyMovies.length; i++) {
-        var addButton = $("<button>");
-        addButton.addClass("disney-movie");
-        addButton.attr("data-title", disneyMovies[i]);
-        addButton.text(disneyMovies[i]);
-        $("#buttons-view").append(addButton);
-    }
-   
-    $("add-movie").on("click", function (event) {
+     var movie = $(this).attr("data-name");
+     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + movie +
+         "&api_key=S7N4zV82ub9Vv7Zw3iapPSxhQQbuI8uf&limit=20";
+     // Creating an AJAX call for the specific movie button being clicked
+     $.ajax({
+         url: queryURL,
+         method: "GET"
+     }).then(function (response) {
+         for (var i = 0; i < response.data.length; i++) {
 
-        event.preventDefault();
-        var disneyMovie = $("#movie-input").val().trim();
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + disneyMovie +
-        "&api_key=S7N4zV82ub9Vv7Zw3iapPSxhQQbuI8uf&limit=20";
-        
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).done(function (response) {
-            disneyMovies.push(disneyMovie);
-            // renderButton();
-        });
-    });
+             var movieDiv = $("<div class='movie'>");
+
+             var rating = response.data[i].rating;
+             var ratingLabel = $("<p>").text("Rating: " + rating);
+             movieDiv.append(ratingLabel);
 
 
-}
-    
+             var gifURL = response.data[i].images.fixed_height_still.url;
 
-function displayGifs () {
-    var disneyMovie = $(this).attr("data-title");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + disneyMovie + "&api_key=S7N4zV82ub9Vv7Zw3iapPSxhQQbuI8uf&limit=20";
+             // Creating an element to hold the image
+             var image = $("<img>").attr("src", gifURL);
+             image.attr();
+             image.attr();
+             image.attr();
 
-	$.ajax({
-        url: queryURL,
-        method: "GET"
-    }).done(function(response){
 
-        $("#movies-view").empty();
-        for (var i = 0; i < response.data.length; i++) {
-            
-        }
-    });
-    
+             // Appending the image
+             movieDiv.append(image);
 
-}
+             // Putting the entire movie above the previous movies
+             $("#movies-view").prepend(movieDiv);
+
+         }
+
+
+
+
+     });
+
+ }
+
+ // Function for displaying movie data
+ function renderButtons() {
+
+     // Deleting the movies prior to adding new movies
+     // (this is necessary otherwise you will have repeat buttons)
+     $("#buttons-view").empty();
+
+     // Looping through the array of movies
+     for (var i = 0; i < movies.length; i++) {
+
+         // Then dynamicaly generating buttons for each movie in the array
+         // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+         var a = $("<button>");
+         // Adding a class of movie-btn to our button
+         a.addClass("movie-btn");
+         // Adding a data-attribute
+         a.attr("data-name", movies[i]);
+         // Providing the initial button text
+         a.text(movies[i]);
+         // Adding the button to the buttons-view div
+         $("#buttons-view").append(a);
+     }
+ }
+
+ // This function handles events where a movie button is clicked
+ $("#add-movie").on("click", function (event) {
+     event.preventDefault();
+     // This line grabs the input from the textbox
+     var movie = $("#movie-input").val().trim();
+
+     // Adding movie from the textbox to our array
+     movies.push(movie);
+
+     // Calling renderButtons which handles the processing of our movie array
+     renderButtons();
+ });
+
+ // Adding a click event listener to all elements with a class of "movie-btn"
+ $(document).on("click", ".movie-btn", displayMovieGif);
+
+ // Calling the renderButtons function to display the intial buttons
+ renderButtons();
+
+
+
+
+
+
 
 // function gifAction(){
 
@@ -68,5 +111,5 @@ function displayGifs () {
 // $(".disney-movie").on("click", displayGifs)
 // $(".action").on("click",gifAction);
 
-renderButton(); 
+// renderButton(); 
 
