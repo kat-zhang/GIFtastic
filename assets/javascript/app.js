@@ -3,14 +3,36 @@ var disneyMovies = ['Cinderella','The Little Mermaid','The Lion King', 'Mulan','
 
 // create button on click new search by user
 
-function renderButton (){}
+function renderButton (){
+    $("#buttons-view").empty();
+    for (var i = 0; i < disneyMovies.length; i++) {
+        var  addButton = $("<button>");
+        addButton.addClass.("disney-movie");
+        addButton.attr("data-title", disneyMovies[i]);
+        addButton.text(topics[i]);
+        $("#buttons-view").append(addButton);
+    }
+};
+
+$("add-movie").on("click", function (event) {
+
+    event.preventDefault();
+    var disneyMovie = $("#movie-input").val().trim();
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + disneyMovie +
+    "&api_key=S7N4zV82ub9Vv7Zw3iapPSxhQQbuI8uf&limit=20";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).done(function (response) {
+        disneyMovies.push(disneyMovie);
+        renderButtons();
+    });
+});
 
 
-
-// $("button").on("click", function() {
-
-//     var disneyMovie = $(this).attr("data-disney");
-//     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + disneyMovie + "&api_key=S7N4zV82ub9Vv7Zw3iapPSxhQQbuI8uf&limit=20";
+var disneyMovie = $(this).attr("data-title");
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + disneyMovie + "&api_key=S7N4zV82ub9Vv7Zw3iapPSxhQQbuI8uf&limit=20";
 
 //     $.ajax({
 //         url: queryURL,
