@@ -30,9 +30,42 @@ $("add-movie").on("click", function (event) {
     });
 });
 
+function displayGifs () {
+    var disneyMovie = $(this).attr("data-title");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + disneyMovie + "&api_key=S7N4zV82ub9Vv7Zw3iapPSxhQQbuI8uf&limit=20";
 
-var disneyMovie = $(this).attr("data-title");
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + disneyMovie + "&api_key=S7N4zV82ub9Vv7Zw3iapPSxhQQbuI8uf&limit=20";
+	$.ajax({
+        url: queryURL,
+        method: "GET"
+    }).done(function(response){
+
+        $("#movies-view").empty();
+        for (var i = 0; i < response.data.length; i++) {
+            var gifDiv $("<div>");
+            gifDiv.addClass("gifDiv");
+            gifDiv.html("<p> Rating: " + response.data[i].rating);
+
+            var gifGif = $("<img>").attr("src", response.data[i].images.fixed_height_still.url);
+            gifGif.addClass("gif");
+
+            var image = $("<div>");
+            image.addClass("change");
+            image.attr("data-state", "still")
+            image.attr("data-title", disneyMovie)
+            image.attr("data-still", response.data[i].images.fixed_height_still.url);
+            image.attr("data-animate", response.data[i].images.fixed_height.url)
+
+
+            append
+            append
+            append
+
+        }
+    }
+    
+
+}
+
 
 //     $.ajax({
 //         url: queryURL,
