@@ -12,7 +12,7 @@
          url: queryURL,
          method: "GET"
      }).then(function (response) {
-         for (var i = 0; i < response.data.length; i++) {
+        for (var i = 0; i < response.data.length; i++) {
 
              var movieDiv = $("<div class='movie'>");
 
@@ -37,16 +37,31 @@
              // Putting the entire movie above the previous movies
              $("#movies-view").prepend(movieDiv);
 
-         }
+        }
 
+        function gifAction(){
+
+            var state = $(this).attr("data-state");
+            if (state === "still") {
+                var animate = $(this).attr("data-animate");
+                $(this).attr("src", animate);
+                $(this).attr("data-state", "animate");
+            } else {
+                var still =  $(this).attr("data-still");
+                $(this).attr("src", still);
+                $(this).attr("data-state", "still");
+            }
+            };
+            
+            
+            $(".action").on("click",gifAction);
 
 
 
      });
 
- }
+}
 
- 
  function renderButtons() {
 
      // Deleting the previous disney gifs
@@ -90,22 +105,7 @@
  renderButtons();
 
 
-function gifAction(){
 
-var state = $(this).attr("data-state");
-if (state === "still") {
-    var animate = $(this).attr("data-animate");
-    $(this).attr("src", animate);
-    $(this).attr("data-state", "animate");
-} else {
-    var still =  $(this).attr("data-still");
-    $(this).attr("src", still);
-    $(this).attr("data-state", "still");
-}
-};
-
-
-$(".action").on("click",gifAction);
 
 // renderButton(); 
 
