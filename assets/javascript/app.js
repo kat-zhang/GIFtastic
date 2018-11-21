@@ -22,12 +22,13 @@
 
 
              var gifURL = response.data[i].images.fixed_height_still.url;
-            //  var actionGif = response.data[i].images.fixed_height.url;
+             var actionGif = response.data[i].images.fixed_height.url;
              var image = $("<img>").attr("src", gifURL);
-            //  image.attr("data-state", "still");
-            //  image.attr("data-name", movie);
-            //  image.attr("data-still", gifURL);
-            //  image.attr("data-animate", actionGif);
+             image.addClass("action");
+             image.attr("data-state", "still");      //x
+             image.attr("data-name", movie);        //x
+             image.attr("data-still", gifURL);      //x
+             image.attr("data-animate", actionGif); //x
 
 
              // Appending the image
@@ -45,26 +46,26 @@
 
  }
 
- // Function for displaying movie data
+ 
  function renderButtons() {
 
-     // Deleting the movies prior to adding new movies
-     // (this is necessary otherwise you will have repeat buttons)
+     // Deleting the previous disney gifs
+     
      $("#buttons-view").empty();
 
      // Looping through the array of movies
      for (var i = 0; i < movies.length; i++) {
 
-         // Then dynamicaly generating buttons for each movie in the array
-         // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+         // generate buttons for the default array
+        
          var a = $("<button>");
-         // Adding a class of movie-btn to our button
+         // Adding a class of movie-btn to each button
          a.addClass("movie-btn");
          // Adding a data-attribute
          a.attr("data-name", movies[i]);
-         // Providing the initial button text
+         // Adding movie title as button text
          a.text(movies[i]);
-         // Adding the button to the buttons-view div
+         // Adding the button to their div
          $("#buttons-view").append(a);
      }
  }
@@ -103,8 +104,8 @@ if (state === "still") {
 }
 };
 
-$(".disney-movie").on("click", displayGifs)
+
 $(".action").on("click",gifAction);
 
-renderButton(); 
+// renderButton(); 
 
