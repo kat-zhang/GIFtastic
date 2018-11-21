@@ -41,72 +41,42 @@ function displayGifs () {
 
         $("#movies-view").empty();
         for (var i = 0; i < response.data.length; i++) {
-            var gifDiv $("<div>");
+            var gifDiv = $("<div>");
             gifDiv.addClass("gifDiv");
             gifDiv.html("<p> Rating: " + response.data[i].rating);
 
             var gifGif = $("<img>").attr("src", response.data[i].images.fixed_height_still.url);
             gifGif.addClass("gif");
 
-            var image = $("<div>");
-            image.addClass("change");
+            var image = $("<div>"); 
+            image.addClass("action");
             image.attr("data-state", "still")
             image.attr("data-title", disneyMovie)
             image.attr("data-still", response.data[i].images.fixed_height_still.url);
             image.attr("data-animate", response.data[i].images.fixed_height.url)
 
 
-            append
-            append
-            append
-
+            $(image).append(gifGif);
+            $(gifDiv).append(image);
+            $("#movies-view").append(gifDiv);
         }
-    }
+    });
     
 
 }
 
+function gifAction(){
 
-//     $.ajax({
-//         url: queryURL,
-//         method: 'GET',
-//     }).then(function(response){
-        
-   
-//     var results = response.data;
+    if ($(this).attr("data-state") == "still") {
+        $(this).html("<img src='" + $(this).attr("data-animate") + "'>");
+        $(this).attr("data-state", "animate");
+    }
+    else {
+        $(this).html("<img src='" + $(this).attr("data-still") + "'>");
+        $(this).attr("data-state", "still");
+    }
+};
+//  renderButtons(); 
 
-//     for (var i = 0; i < results.length; i++) {
-
-//         var gifDiv = $("<div>");
-//         var rating  = results[i].rating;
-//         var p = $("<p>").text("Rating: " + rating);
-//         var movieGif = $("<img>");
-//         movieGif.attr("src", results[i].images.fixed_height.url);
-//         gifDiv.append(p);
-//         gifDiv.append(movieGif);
-//         $("#gif-holder").prepend(gifDiv);
-//     }
-// });
-
-// function renderButtons() {
-
-//     $("#buttons-view").empty();
-
-//     for (var i = 0; i < disneyMovies.length; i++); {
-
-//         var add = $("<buttons>");
-//         add.addClass("movie-btn");
-//         add.attr("data-title", disneyMovies[i]);
-//         add.text(disneyMovies[i]);
-
-//         $("#buttons-view").append(add);
-//         }
-//     }
-
-//     $("add-gif").on("click", function(event) {
-//         event.preventDefault();
-//         var disneyMovie = $("#disney-input").val().trim();
-//         disneyMovies.push(disneyMovie);
-//         renderButtons();
-//     });
-
+document.on("click") button
+document.on("click") gif
