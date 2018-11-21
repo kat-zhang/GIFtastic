@@ -1,5 +1,5 @@
  // Initial array of movies
- var movies = ["Cinderella", "The Little Mermaid", "The Lion King", "Mulan", "Peter Pan"];
+ var movies = ["Cinderella", "The Little Mermaid", "The Lion King", "Mulan", "Peter Pan", "Beauty and the Beast", "Monsters, Inc.", "The Incredibles", "Wall-e","The Emperor's New Groove", "Lilo and Stitch","Bambi", "Finding Nemo", "Pinocchio", "Winnie the Pooh", "Alice in Wonderland" ];
 
  // displayMovieInfo function re-renders the HTML to display the appropriate content
  function displayMovieGif() {
@@ -22,12 +22,12 @@
 
 
              var gifURL = response.data[i].images.fixed_height_still.url;
-
-             // Creating an element to hold the image
+            //  var actionGif = response.data[i].images.fixed_height.url;
              var image = $("<img>").attr("src", gifURL);
-             image.attr();
-             image.attr();
-             image.attr();
+            //  image.attr("data-state", "still");
+            //  image.attr("data-name", movie);
+            //  image.attr("data-still", gifURL);
+            //  image.attr("data-animate", actionGif);
 
 
              // Appending the image
@@ -89,27 +89,22 @@
  renderButtons();
 
 
+function gifAction(){
 
+var state = $(this).attr("data-state");
+if (state === "still") {
+    var animate = $(this).attr("data-animate");
+    $(this).attr("src", animate);
+    $(this).attr("data-state", "animate");
+} else {
+    var still =  $(this).attr("data-still");
+    $(this).attr("src", still);
+    $(this).attr("data-state", "still");
+}
+};
 
+$(".disney-movie").on("click", displayGifs)
+$(".action").on("click",gifAction);
 
-
-
-// function gifAction(){
-
-// var state = $(this).attr("data-state");
-// if (state === "still") {
-//     var animate = $(this).attr("data-animate");
-//     $(this).attr("src", animate);
-//     $(this).attr("data-state", "animate");
-// } else {
-//     var still =  $(this).attr("data-still");
-//     $(this).attr("src", still);
-//     $(this).attr("data-state", "still");
-// }
-// };
-
-// $(".disney-movie").on("click", displayGifs)
-// $(".action").on("click",gifAction);
-
-// renderButton(); 
+renderButton(); 
 
