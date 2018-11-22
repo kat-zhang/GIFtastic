@@ -16,8 +16,6 @@ body{
     float: left;
     margin-bottom: 10px;
     margin-right: 10px;
-    /* width: 100%;
-    display: inline; */
 }
 
 .btn-sm {
@@ -31,9 +29,7 @@ body{
 #movie-form {
     width: 100%;
 }
-#movie-input {
-    width: 100%;
-}
+
 #add-movie {
     border-radius: .8rem;
     margin-right: 35%;
