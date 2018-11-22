@@ -1,3 +1,38 @@
 body{
-    background-image: url("../images/background.jpg")
+    background-image: url("../images/background.jpg");
+    margin: 0px;
+    padding: 0px;
+    
+}
+#app-title {
+   padding-top: 20px;
+   padding-bottom: 10px;
+}
+#buttons-view {
+    display: inline;
+}
+#movie-form {
+
+    float: right;
+}
+#movies-view {
+    margin-right: 10px;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.btn-sm {
+    padding: .25rem .25rem;
+    font-size: .9rem;
+    line-height: 1.5;
+    border-radius: .8rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+#add-movie {
+    border-radius: .8rem;
+    margin-right: 35%;
+    margin-top: 5px;
+    background-color: rgb(240, 49, 128);
+    border-color:  rgb(240, 49, 128);
 }

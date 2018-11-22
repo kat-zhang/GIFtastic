@@ -15,23 +15,33 @@
 
 <body>
   <div class="container">
-    <h1 class="display-4 text-center"> Disney and Pixar Movies!</h1>
-   
-    <div id="buttons-view"></div>
-    <br>
-    <form id="movie-form">
-      <label for="movie-input"> See more </label>
-      <input type="text" id="movie-input">
-      <span>
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="display-4 text-center" id="app-title"> Disney and Pixar Movies!</h1>
 
-      <!-- button adds user input -->
-      <input id="add-movie" type="submit" value="Magic Button "></span>
-    </form>
-   
-    <div id ="movies-view"></div>
-    
+        <div id="buttons-view"></div>
+      </div>
+    </div>
   </div>
+  <br>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+
+        <form id="movie-form">
+          <label for="movie-input"> See more </label>
+          <input type="text" id="movie-input">
+          <input class="btn btn-light" id="add-movie" type="submit" value="Magic Button">
+        </form>
+
+      </div>
+      <div class="col-md-9 container fluid">
+        <div id="movies-view"></div>
+      </div>
+    </div>
+  </div>
+  </div>
 
 <script src="assets/javascript/app.js"></script>
 </body>

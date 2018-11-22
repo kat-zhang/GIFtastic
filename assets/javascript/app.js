@@ -1,5 +1,5 @@
  // Initial array of movies
- var movies = ["Cinderella", "The Little Mermaid", "The Lion King", "Mulan", "Peter Pan", "Beauty and the Beast", "Monsters, Inc.", "The Incredibles", "Wall-e","The Emperor's New Groove", "Lilo and Stitch","Bambi", "Finding Nemo", "Pinocchio", "Winnie the Pooh", "Alice in Wonderland" ];
+ var movies = ["The Little Mermaid", "The Lion King", "Mulan", "Peter Pan","Monsters, Inc.", "Toy Story","The Emperor's New Groove","Bambi","Finding Nemo", "Pinocchio", "Winnie the Pooh"];
 
  // displayMovieInfo function re-renders the HTML to display the appropriate content
  function displayMovieGif() {
@@ -75,7 +75,7 @@
         
          var a = $("<button>");
          // Adding a class of movie-btn to each button
-         a.addClass("movie-btn");
+         a.addClass("movie-btn btn btn-warning btn-sm");
          // Adding a data-attribute
          a.attr("data-name", movies[i]);
          // Adding movie title as button text
@@ -107,5 +107,5 @@
 
 
 
-// renderButton(); 
+
 
