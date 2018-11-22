@@ -11,10 +11,9 @@ body{
 #buttons-view {
     display: inline;
 }
-#movie-form {
-
+/* #movie-form {
     float: right;
-}
+} */
 #movies-view {
     margin-right: 10px;
     margin-bottom: 20px;

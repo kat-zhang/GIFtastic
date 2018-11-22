@@ -12,14 +12,15 @@
          url: queryURL,
          method: "GET"
      }).then(function (response) {
+        $("#movies-view").empty();
         for (var i = 0; i < response.data.length; i++) {
-
+            
              var movieDiv = $("<div class='movie'>");
 
              var rating = response.data[i].rating;
              var ratingLabel = $("<p>").text("Rating: " + rating);
              movieDiv.append(ratingLabel);
-
+             
 
              var gifURL = response.data[i].images.fixed_height_still.url;
              var actionGif = response.data[i].images.fixed_height.url;
@@ -30,12 +31,13 @@
              image.attr("data-still", gifURL);      //x
              image.attr("data-animate", actionGif); //x
 
-
+             
              // Appending the image
              movieDiv.append(image);
 
              // Putting the entire movie above the previous movies
              $("#movies-view").prepend(movieDiv);
+            
 
         }
 
