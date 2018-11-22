@@ -2,22 +2,32 @@ body{
     background-image: url("../images/background.jpg");
     margin: 0px;
     padding: 0px;
-    
 }
 #app-title {
    padding-top: 20px;
    padding-bottom: 10px;
 }
 #buttons-view {
-    display: inline;
+   margin: 20px, 0px;
 }
-/* #movie-form {
-    float: right;
-} */
+.container-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    display: inline;
+
+}
 #movies-view {
     margin-right: 10px;
     margin-bottom: 20px;
-    float: left;
+   float: left;
+}
+.movie {
+    padding: 0;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    width: 100%;
+    display: inline;
 }
 
 .btn-sm {
@@ -27,6 +37,12 @@ body{
     border-radius: .8rem;
     margin-right: 5px;
     margin-bottom: 5px;
+}
+#movie-form {
+    width: 100%;
+}
+#movie-input {
+    width: 100%;
 }
 #add-movie {
     border-radius: .8rem;
